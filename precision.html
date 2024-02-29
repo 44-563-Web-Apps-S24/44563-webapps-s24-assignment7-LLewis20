@@ -12,26 +12,48 @@
 <body>
 
   <header>
-    <h1>Logan Lewis Speed check</h1>
+    <h1>Logan Lewis Speed Check</h1>
   </header>
 
   <div id="target">
     <p>Your time</p>
   </div>
 
-  <div class="counter">
+  <div id="counter">
     <p>Count</p>
   </div>
 
-    <button type="button" class="btn btn-primary" >Start Timer</button>
+    <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
     <button type="button" class="btn btn-primary" onclick="recordTime()">Stop Timer</button>
   
   <script>
     var stopTime;
+    var countdownTimer; 
 
     function recordTime() {
-        stopTime = Date.now();
-        console.log("Stop time: ", stopTime);
+        if (!stopTime) { 
+            stopTime = Date.now();
+            console.log("Stop time: ", stopTime);
+        }
+    }
+
+    function startTime() {
+        stopTime = undefined; 
+        var countdown = 4; 
+        for (let i = 0; i <= 4; i++) {
+            setTimeout(function() {
+                document.getElementById('counter').innerHTML = "Count: " + (4 - i);
+            }, i * 1000);
+        }
+
+        setTimeout(function() {
+            if (stopTime === undefined) {
+                document.getElementById('target').innerHTML = "Your time: Too Slow";
+            } else {
+                var elapsed = stopTime - Date.now() + 4000;
+                document.getElementById('target').innerHTML = "Your time was: " + elapsed + " ms";
+            }
+        });
     }
   </script>
 
