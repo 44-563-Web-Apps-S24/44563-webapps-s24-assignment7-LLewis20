@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
   <title>Div List</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
   <header>
@@ -15,21 +14,36 @@
   </header>
 
   <input type="text" id="itemInput" placeholder="Enter item">
-  <button id="addEndBtn">Add End</button>
+  <button id="addEndBtn" onclick="addItemAtEnd()">Add End</button>
+  <button id="addFrontBtn" onclick="addFront()">Add Front</button>
+  <button id="removeBtn" onclick="remove()">Remove</button>
   <div class="flex-container" id="flexContainer"></div>
 
   <script>
-    document.getElementById('addEndBtn').addEventListener('click', function() {
-      var inputVal = document.getElementById('itemInput').value;
-      if (inputVal.trim() === '') return;
 
+    function addItemAtEnd() {
       var newDiv = document.createElement('div');
       newDiv.className = 'divlist';
-      newDiv.innerHTML = inputVal;
-
+      newDiv.innerHTML = document.getElementById('itemInput').value;
       document.getElementById('flexContainer').appendChild(newDiv);
       document.getElementById('itemInput').value = '';
-    });
+    }
+
+    function addFront() {
+      var newDiv = document.createElement('div');
+      newDiv.className = 'divlist';
+      newDiv.innerHTML = document.getElementById('itemInput').value;
+      var container = document.getElementById('flexContainer');
+      container.insertBefore(newDiv, container.firstChild);
+      document.getElementById('itemInput').value = '';
+    }
+
+    function remove() {
+      var divListItems = document.getElementsByClassName('divlist');
+      if (divListItems.length > 0) {
+        divListItems[Math.floor(divListItems.length / 2)].remove();
+      }
+    }
   </script>
 
 </body>
