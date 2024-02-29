@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Div List</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Logan Lewis Builds List with Divs</h1>
+  </header>
+
+  <input type="text" id="itemInput" placeholder="Enter item">
+  <button id="addEndBtn">Add End</button>
+  <div class="flex-container" id="flexContainer"></div>
+
+  <script>
+    document.getElementById('addEndBtn').addEventListener('click', function() {
+      var inputVal = document.getElementById('itemInput').value;
+      if (inputVal.trim() === '') return;
+
+      var newDiv = document.createElement('div');
+      newDiv.className = 'divlist';
+      newDiv.innerHTML = inputVal;
+
+      document.getElementById('flexContainer').appendChild(newDiv);
+      document.getElementById('itemInput').value = '';
+    });
+  </script>
+
+</body>
+</html>
